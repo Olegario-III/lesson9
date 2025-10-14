@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [movies, setMovies] = useState(['The Shawshank Redemption', 'The Godfather', 'The Dark Knight']);
+  const [newMovie, setNewMovie] = useState("");
+
+  const addMovie = () => {
+    if (newMovie.trim() !== '') {
+      setMovies([...movies, newMovie.trim()]);
+      setNewMovie('');
+    }
+  };
+
+  const removeMovie = (index) => {
+    const newMovies = movies.filter((_, i) => i !== index);
+    setMovies(newMovies);
+  };
+
+  return (<div className="App">
+    <h1>Lesson 9</h1>
+    <p>A movie favorite using .map.</p>
+    <input
+      value={newMovie}
+      onChange={(e) => setNewMovie(e.target.value)}
+      placeholder="Type a movie name"
+    />
+    <button onClick={addMovie}>Add Movie</button>
+    <ul>
+      {movies.map((movie, index) => (
+        <li key={index}>{movie}<button onClick={() => removeMovie(index)}>Remove</button></li>
+      ))}
+    </ul>
+  </div>);
 }
 
 export default App;
