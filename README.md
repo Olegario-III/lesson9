@@ -21,3 +21,16 @@ A simple React application to manage your favorite movies. Built as part of **Le
 2. Install dependencies:
    ```bash
    npm install
+## 📸 Preview
+A simple movie list with:
+
+Input field to add movies
+Add button
+Dynamic list with individual remove buttons for each movie
+
+## 📝 Code Highlights
+
+Uses useState to manage the movies array
+Implements .map() to render list items dynamically
+Each movie has a unique key for efficient rendering
+Functional component with event handlers
